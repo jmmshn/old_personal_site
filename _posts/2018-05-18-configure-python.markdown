@@ -27,6 +27,7 @@ conda create -n matsci python=3
 Warning: 'matsci' already in 'channels' list, moving to the top
 ```
 
+# Install the Relevant Packages
 - install the packages you actually need:
 ```
 (matsci) % conda install pymatgen

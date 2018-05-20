@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-18T18:10:59-07:00</updated><id>http://localhost:4000/</id><title type="html">Jimmy Shen’s Personal Research Blog</title><subtitle>Notes and scripts that help me do computational materials research, as well as other general interest stuff that are related to computers.</subtitle><entry><title type="html">Configure Python</title><link href="http://localhost:4000/2018/05/18/configure-python.html" rel="alternate" type="text/html" title="Configure Python" /><published>2018-05-18T17:41:32-07:00</published><updated>2018-05-18T17:41:32-07:00</updated><id>http://localhost:4000/2018/05/18/configure-python</id><content type="html" xml:base="http://localhost:4000/2018/05/18/configure-python.html">&lt;p&gt;Steps to set up python environment from scratch and install python packages directly from github.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-19T22:48:37-07:00</updated><id>http://localhost:4000/</id><title type="html">Jimmy Shen’s Personal Research Blog</title><subtitle>Notes and scripts that help me do computational materials research, as well as other general interest stuff that are related to computers.</subtitle><entry><title type="html">Configure Python</title><link href="http://localhost:4000/2018/05/18/configure-python.html" rel="alternate" type="text/html" title="Configure Python" /><published>2018-05-18T17:41:32-07:00</published><updated>2018-05-18T17:41:32-07:00</updated><id>http://localhost:4000/2018/05/18/configure-python</id><content type="html" xml:base="http://localhost:4000/2018/05/18/configure-python.html">&lt;p&gt;Steps to set up python environment from scratch and install python packages directly from github.&lt;/p&gt;
 
 &lt;h1 id=&quot;setting-up-miniconda3&quot;&gt;Setting up Miniconda3&lt;/h1&gt;
 
@@ -20,6 +20,10 @@
 Warning: 'matsci' already in 'channels' list, moving to the top
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;install-the-relevant-packages&quot;&gt;Install the Relevant Packages&lt;/h1&gt;
+&lt;ul&gt;
   &lt;li&gt;install the packages you actually need:
     &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(matsci) % conda install pymatgen
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;

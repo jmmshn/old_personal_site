@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-19T22:48:37-07:00</updated><id>http://localhost:4000/</id><title type="html">Jimmy Shen’s Personal Research Blog</title><subtitle>Notes and scripts that help me do computational materials research, as well as other general interest stuff that are related to computers.</subtitle><entry><title type="html">Configure Python</title><link href="http://localhost:4000/2018/05/18/configure-python.html" rel="alternate" type="text/html" title="Configure Python" /><published>2018-05-18T17:41:32-07:00</published><updated>2018-05-18T17:41:32-07:00</updated><id>http://localhost:4000/2018/05/18/configure-python</id><content type="html" xml:base="http://localhost:4000/2018/05/18/configure-python.html">&lt;p&gt;Steps to set up python environment from scratch and install python packages directly from github.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-19T23:05:36-07:00</updated><id>http://localhost:4000/</id><title type="html">Jimmy Shen’s Personal Research Blog</title><subtitle>Notes and scripts that help me do computational materials research, as well as other general interest stuff that are related to computers.</subtitle><entry><title type="html">Configure Python</title><link href="http://localhost:4000/2018/05/18/configure-python.html" rel="alternate" type="text/html" title="Configure Python" /><published>2018-05-18T17:41:32-07:00</published><updated>2018-05-18T17:41:32-07:00</updated><id>http://localhost:4000/2018/05/18/configure-python</id><content type="html" xml:base="http://localhost:4000/2018/05/18/configure-python.html">&lt;p&gt;Steps to set up python environment from scratch and install python packages directly from github.&lt;/p&gt;
 
 &lt;h1 id=&quot;setting-up-miniconda3&quot;&gt;Setting up Miniconda3&lt;/h1&gt;
 
@@ -7,16 +7,11 @@
     &lt;p&gt;Install Miniconda3 from: &lt;a href=&quot;https://conda.io/miniconda.html&quot;&gt;https://conda.io/miniconda.html&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;Create a new python3 environment.
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda create -n matsci python=3
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda create -n my_env python=3
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;When you have activated the environment, check which python you are using, make sure that it belongs to the virtual environment.
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(matsci) % which python
-/Users/lik/miniconda3/envs/matsci/bin/python
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;move the packages in the matsci channel to the very top
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(matsci) % conda config --prepend channels matsci
+  &lt;li&gt;Move the packages in the matsci channel to the very top
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(my_env) % conda config --prepend channels matsci
 Warning: 'matsci' already in 'channels' list, moving to the top
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
@@ -24,8 +19,25 @@ Warning: 'matsci' already in 'channels' list, moving to the top
 
 &lt;h1 id=&quot;install-the-relevant-packages&quot;&gt;Install the Relevant Packages&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;install the packages you actually need:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(matsci) % conda install pymatgen
+  &lt;li&gt;Install the packages you actually need:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(my_env) % conda install pymatgen
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;When you have activated the environment, check which python you are using, make sure that it belongs to the virtual environment.
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(my_env) % which python
+/Users/lik/miniconda3/envs/matsci/bin/python
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;Then you can install packages downloaded from github into the virtual environment using:&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(my_env) % python setup.py install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;configuring-jupyter&quot;&gt;Configuring Jupyter&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Install Jupyter using
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(my_env) % conda install pymatgen
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;</content><author><name></name></author><summary type="html">Steps to set up python environment from scratch and install python packages directly from github.</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2018/05/18/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2018-05-18T17:11:25-07:00</published><updated>2018-05-18T17:11:25-07:00</updated><id>http://localhost:4000/jekyll/update/2018/05/18/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2018/05/18/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;

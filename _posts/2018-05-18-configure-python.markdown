@@ -12,23 +12,34 @@ Steps to set up python environment from scratch and install python packages dire
 
 - Create a new python3 environment.
 ```
-conda create -n matsci python=3
+conda create -n my_env python=3
 ```
 
-- When you have activated the environment, check which python you are using, make sure that it belongs to the virtual environment.
+- Move the packages in the matsci channel to the very top
 ```
-(matsci) % which python
-/Users/lik/miniconda3/envs/matsci/bin/python
-```
-
-- move the packages in the matsci channel to the very top
-```
-(matsci) % conda config --prepend channels matsci
+(my_env) % conda config --prepend channels matsci
 Warning: 'matsci' already in 'channels' list, moving to the top
 ```
 
 # Install the Relevant Packages
-- install the packages you actually need:
+- Install the packages you actually need:
 ```
-(matsci) % conda install pymatgen
+(my_env) % conda install pymatgen
+```
+
+- When you have activated the environment, check which python you are using, make sure that it belongs to the virtual environment.
+```
+(my_env) % which python
+/Users/lik/miniconda3/envs/matsci/bin/python
+```
+Then you can install packages downloaded from github into the virtual environment using:
+```
+(my_env) % python setup.py install
+```
+
+# Configuring Jupyter
+
+- Install Jupyter using
+```
+(my_env) % conda install pymatgen
 ```

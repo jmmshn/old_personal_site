@@ -54,16 +54,11 @@
     <p>Install Miniconda3 from: <a href="https://conda.io/miniconda.html">https://conda.io/miniconda.html</a></p>
   </li>
   <li>Create a new python3 environment.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create -n matsci python=3
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create -n my_env python=3
 </code></pre></div>    </div>
   </li>
-  <li>When you have activated the environment, check which python you are using, make sure that it belongs to the virtual environment.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(matsci) % which python
-/Users/lik/miniconda3/envs/matsci/bin/python
-</code></pre></div>    </div>
-  </li>
-  <li>move the packages in the matsci channel to the very top
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(matsci) % conda config --prepend channels matsci
+  <li>Move the packages in the matsci channel to the very top
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(my_env) % conda config --prepend channels matsci
 Warning: 'matsci' already in 'channels' list, moving to the top
 </code></pre></div>    </div>
   </li>
@@ -71,8 +66,25 @@ Warning: 'matsci' already in 'channels' list, moving to the top
 
 <h1 id="install-the-relevant-packages">Install the Relevant Packages</h1>
 <ul>
-  <li>install the packages you actually need:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(matsci) % conda install pymatgen
+  <li>Install the packages you actually need:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(my_env) % conda install pymatgen
+</code></pre></div>    </div>
+  </li>
+  <li>When you have activated the environment, check which python you are using, make sure that it belongs to the virtual environment.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(my_env) % which python
+/Users/lik/miniconda3/envs/matsci/bin/python
+</code></pre></div>    </div>
+    <p>Then you can install packages downloaded from github into the virtual environment using:</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(my_env) % python setup.py install
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="configuring-jupyter">Configuring Jupyter</h1>
+
+<ul>
+  <li>Install Jupyter using
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(my_env) % conda install pymatgen
 </code></pre></div>    </div>
   </li>
 </ul>

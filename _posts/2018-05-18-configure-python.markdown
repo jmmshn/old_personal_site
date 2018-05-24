@@ -39,7 +39,25 @@ Then you can install packages downloaded from github into the virtual environmen
 
 # Configuring Jupyter
 
-- Install Jupyter using
+- Install Jupyter using conda
 ```
-(my_env) % conda install pymatgen
+(my_env) % conda install jupyter
 ```
+- Startup scripts and where to install:
+I do this inside a jupyter notebook with the command
+```
+%%writefile ~/.ipython/profile_default/startup/00-searborn.ipy
+```
+
+- The path where you keep all your personal scripts/classes can be added using the _ABSOLUTE_ path (no "~" or "$HOME" or other shorthands).  Use append to add the end or insert to add anywhere.
+``` python
+import sys
+sys.path.append( '/Users/lik/Google_Drive/ipython_scripts/scripts/' )
+sys.path.insert(0, '/media/lik/Storage/Google_Drive/ipython_scripts/scripts') # ubuntu needs absolute path
+```
+
+
+- Set up Jupyter to run as a server
+<!--- TODO -->
+
+-

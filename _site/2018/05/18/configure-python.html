@@ -83,11 +83,26 @@ Warning: 'matsci' already in 'channels' list, moving to the top
 <h1 id="configuring-jupyter">Configuring Jupyter</h1>
 
 <ul>
-  <li>Install Jupyter using
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(my_env) % conda install pymatgen
+  <li>Install Jupyter using conda
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(my_env) % conda install jupyter
 </code></pre></div>    </div>
   </li>
+  <li>Startup scripts and where to install:
+I do this inside a jupyter notebook with the command
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%%writefile ~/.ipython/profile_default/startup/00-searborn.ipy
+</code></pre></div>    </div>
+  </li>
+  <li>The path where you keep all your personal scripts/classes can be added using the <em>ABSOLUTE</em> path (no “~” or “$HOME” or other shorthands).  Use append to add the end or insert to add anywhere.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s">'/Users/lik/Google_Drive/ipython_scripts/scripts/'</span> <span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">'/media/lik/Storage/Google_Drive/ipython_scripts/scripts'</span><span class="p">)</span> <span class="c"># ubuntu needs absolute path</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Set up Jupyter to run as a server
+<!--- TODO --></li>
 </ul>
+
+<p>-</p>
 
   </div><a class="u-url" href="/2018/05/18/configure-python.html" hidden></a>
 </article>

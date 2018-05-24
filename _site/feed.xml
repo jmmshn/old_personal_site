@@ -1,4 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-19T23:05:36-07:00</updated><id>http://localhost:4000/</id><title type="html">Jimmy Shen’s Personal Research Blog</title><subtitle>Notes and scripts that help me do computational materials research, as well as other general interest stuff that are related to computers.</subtitle><entry><title type="html">Configure Python</title><link href="http://localhost:4000/2018/05/18/configure-python.html" rel="alternate" type="text/html" title="Configure Python" /><published>2018-05-18T17:41:32-07:00</published><updated>2018-05-18T17:41:32-07:00</updated><id>http://localhost:4000/2018/05/18/configure-python</id><content type="html" xml:base="http://localhost:4000/2018/05/18/configure-python.html">&lt;p&gt;Steps to set up python environment from scratch and install python packages directly from github.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-23T15:18:16-07:00</updated><id>http://localhost:4000/</id><title type="html">Jimmy Shen’s Personal Research Blog</title><subtitle>Notes and scripts that help me do computational materials research, as well as other general interest stuff that are related to computers.</subtitle><entry><title type="html">Atomate Workflow Setup</title><link href="http://localhost:4000/2018/05/23/atomate-workflow-setup.html" rel="alternate" type="text/html" title="Atomate Workflow Setup" /><published>2018-05-23T10:43:18-07:00</published><updated>2018-05-23T10:43:18-07:00</updated><id>http://localhost:4000/2018/05/23/atomate-workflow-setup</id><content type="html" xml:base="http://localhost:4000/2018/05/23/atomate-workflow-setup.html">&lt;h1 id=&quot;install-and-configure-atomate-and-fireworks-using-mricoconda&quot;&gt;Install and Configure Atomate and Fireworks using MricoConda&lt;/h1&gt;
+
+&lt;p&gt;As I’m writing this, there seems to be some kind of dependency issue with atomate related to the pybtex version number.
+To fix this we need to make sure that conda can find the newest version of pybtex (&amp;gt;=0.21) which is availible at
+[https://anaconda.org/conda-forge/pybtex].&lt;/p&gt;
+
+&lt;p&gt;The easiest way to fix this is to prepend conda-forge to the list of channels in your ~/.condarc along with the matsci channel.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda config &lt;span class=&quot;nt&quot;&gt;--prepend&lt;/span&gt; channels conda-forge
+conda config &lt;span class=&quot;nt&quot;&gt;--prepend&lt;/span&gt; channels matsci
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;!--- TODO --&gt;
+
+&lt;p&gt;Atomate relies on fireworks so you only have to request to have atomate installed.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda install atomate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The basic idea is your have &lt;em&gt;two&lt;/em&gt; different MongoDB databases to manage your calculations.
+One we’ll call FWORKS for managing the &lt;strong&gt;launchpad&lt;/strong&gt; (fireworks utility for managing jobs), another one we’ll call TASKS to store the results of the calculations.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#FILENAME my_fworker.yaml&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Cori KNL FireWorker&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{}'&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;db_file&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/global/homes/j/jshen/.atomate/results_db.json&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;vasp_cmd&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;srun&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-n&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-c16&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;--cpu_bind=cores&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/global/homes/j/jshen/bin/VASP/vasp.544.cori.knl_noncol&quot;&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;scratch_dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;null&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;incar_update&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;KPAR&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;8&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ds147589.mlab.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;47589&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;database&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tasks_collection&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;collection&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tasks&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin_user&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;jshen&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin_password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;000000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;readonly_user&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;reader&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;readonly_password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;000000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;aliases&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#FILENAME my_launchpad.yaml&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ds247569.mlab.com&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;47569&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;fwork_collections'&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jshen&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;000000'&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;logdir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/global/homes/j/jshen/.atomate/logs&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;strm_lvl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;INFO&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;user_indices&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;wf_user_indices&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#FIlENAME my_qadapter.yaml&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;_fw_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;CommonAdapter&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;_fw_q_type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;SLURM&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;rocket_launch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rlaunch -c /global/homes/j/jshen/.atomate/config rapidfire&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#ntasks_per_node: 32&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;walltime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0:30:00'&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#qos: regular&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;m892&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;debug&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;job_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;null&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;knl,quad,cache'&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;pre_rocket&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;module unload vasp&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;module load vasp-tpc/5.4.4-knl&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;export OMP_PROC_BIND=true&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;export OMP_PLACES=threads&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;export OMP_NUM_THREADS=8&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;post_rocket&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;null&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;logdir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/global/homes/j/jshen/.atomate/logs&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;install-robo-3t&quot;&gt;Install Robo 3T&lt;/h1&gt;
+
+&lt;p&gt;Robo 3T allows you to view the the output of the calculations in your database.&lt;/p&gt;
+
+&lt;h1 id=&quot;questions&quot;&gt;Questions&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Why does the locally installed atomate not work?&lt;/li&gt;
+  &lt;li&gt;TODO Write a configuration script to set up the config directory&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Install and Configure Atomate and Fireworks using MricoConda</summary></entry><entry><title type="html">Configure Python</title><link href="http://localhost:4000/2018/05/18/configure-python.html" rel="alternate" type="text/html" title="Configure Python" /><published>2018-05-18T17:41:32-07:00</published><updated>2018-05-18T17:41:32-07:00</updated><id>http://localhost:4000/2018/05/18/configure-python</id><content type="html" xml:base="http://localhost:4000/2018/05/18/configure-python.html">&lt;p&gt;Steps to set up python environment from scratch and install python packages directly from github.&lt;/p&gt;
 
 &lt;h1 id=&quot;setting-up-miniconda3&quot;&gt;Setting up Miniconda3&lt;/h1&gt;
 
@@ -36,11 +125,26 @@ Warning: 'matsci' already in 'channels' list, moving to the top
 &lt;h1 id=&quot;configuring-jupyter&quot;&gt;Configuring Jupyter&lt;/h1&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Install Jupyter using
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(my_env) % conda install pymatgen
+  &lt;li&gt;Install Jupyter using conda
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(my_env) % conda install jupyter
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Steps to set up python environment from scratch and install python packages directly from github.</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2018/05/18/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2018-05-18T17:11:25-07:00</published><updated>2018-05-18T17:11:25-07:00</updated><id>http://localhost:4000/jekyll/update/2018/05/18/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2018/05/18/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+  &lt;li&gt;Startup scripts and where to install:
+I do this inside a jupyter notebook with the command
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;%%writefile ~/.ipython/profile_default/startup/00-searborn.ipy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The path where you keep all your personal scripts/classes can be added using the &lt;em&gt;ABSOLUTE&lt;/em&gt; path (no “~” or “$HOME” or other shorthands).  Use append to add the end or insert to add anywhere.
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'/Users/lik/Google_Drive/ipython_scripts/scripts/'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'/media/lik/Storage/Google_Drive/ipython_scripts/scripts'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# ubuntu needs absolute path&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set up Jupyter to run as a server
+&lt;!--- TODO --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;-&lt;/p&gt;</content><author><name></name></author><summary type="html">Steps to set up python environment from scratch and install python packages directly from github.</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2018/05/18/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2018-05-18T17:11:25-07:00</published><updated>2018-05-18T17:11:25-07:00</updated><id>http://localhost:4000/jekyll/update/2018/05/18/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2018/05/18/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
 

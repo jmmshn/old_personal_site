@@ -58,6 +58,11 @@ sys.path.insert(0, '/media/lik/Storage/Google_Drive/ipython_scripts/scripts') # 
 
 
 - Set up Jupyter to run as a server
+
 <!--- TODO -->
 
--
+# Configure Atom to edit and run python code
+
+List of useful atom packages  
+
+<!--- TODO -->

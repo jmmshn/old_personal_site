@@ -1,1 +1,0 @@
-# jmmshn.github.io

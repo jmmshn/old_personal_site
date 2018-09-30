@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Configure Python"
 date: "2018-05-18 17:41:32 -0700"
 ---

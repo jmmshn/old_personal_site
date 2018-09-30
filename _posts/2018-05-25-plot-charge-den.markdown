@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Plot the 3D charge density"
 date: "2018-05-25 21:02:16 -0700"
 ---

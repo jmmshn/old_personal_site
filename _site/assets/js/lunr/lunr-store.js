@@ -18,4 +18,9 @@ var store = [{
         "excerpt":"Create links in bin of all the excutables in the currenct directory: find $(pwd) -maxdepth 1 -perm -111 -type f | xargs -I % ln -s % ~/binThe $(pwd) is needed for the full path, and the -I % allows xargs to place the outputs in the middle of the...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/useful-bash-commands/",
+        "teaser":null},{
+        "title": "Battery Database (For Materials Project)",
+        "excerpt":"How We Construct the Battery Database The generation fo the batteries database takes the following steps: First, the tasks database is parsed by the MaterialBuilder from emmet to generate the materials database.The the builder groups calculation of similar materials together and picks the most reliable results for each parameter fro...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/battery-database/",
         "teaser":null}]

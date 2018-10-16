@@ -13,11 +13,11 @@ m0[label = "{{Materials Doc|mp-682\nMn3CoO8|different struct.}}"]
 m1[label = "{{Materials Doc|mp-123\nMn3CoO8}}"]
 m2[label = "{{Materials Doc|mp-456\nLiMn3CoO8}}"]
 m3[label = "{{Materials Doc|mp-1337\nLiMn6Co2O16}}"]
-m4[label = "{{Materials Doc|mp-1001s\nLiCo2O16}}"]
-m5[label = "{{Materials Doc|mp-1001s\nLi2Co2O16}}"]
+m4[label = "{{Materials Doc|mp-1001\nLiCo2O16}}"]
+m5[label = "{{Materials Doc|mp-36023\nLi2Co2O16}}"]
 
-b1[label = "{{Battery Doc|bat-3000004123|Mn3CoO8|LiMn6Co2O16|LiMn3CoO8}}"]
-b2[label = "{{Battery Doc|bat-3000094833|LiCo2O16|nLi2Co2O16}}"]
+b1[label = "{{Battery Doc|bat-3000004123|Mn3CoO8, LiMn6Co2O16, LiMn3CoO8}}"]
+b2[label = "{{Battery Doc|bat-3000094833|LiCo2O16, Li2Co2O16}}"]
 
 
 materials -> m0

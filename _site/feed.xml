@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-16T12:06:15-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jimmy’s Research Blog</title><subtitle>Notes an other useful information for computational material science, high performace computing, and computin in general.</subtitle><author><name>Jimmy-Xuan Shen</name></author><entry><title type="html">Battery Database (For Materials Project)</title><link href="http://localhost:4000/battery-database/" rel="alternate" type="text/html" title="Battery Database (For Materials Project)" /><published>2018-10-15T13:38:55-07:00</published><updated>2018-10-15T13:38:55-07:00</updated><id>http://localhost:4000/battery-database</id><content type="html" xml:base="http://localhost:4000/battery-database/">&lt;h1 id=&quot;how-we-construct-the-battery-database&quot;&gt;How We Construct the Battery Database&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-16T13:22:36-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jimmy’s Research Blog</title><subtitle>Notes an other useful information for computational material science, high performace computing, and computin in general.</subtitle><author><name>Jimmy-Xuan Shen</name></author><entry><title type="html">Battery Database (For Materials Project)</title><link href="http://localhost:4000/battery-database/" rel="alternate" type="text/html" title="Battery Database (For Materials Project)" /><published>2018-10-15T13:38:55-07:00</published><updated>2018-10-15T13:38:55-07:00</updated><id>http://localhost:4000/battery-database</id><content type="html" xml:base="http://localhost:4000/battery-database/">&lt;h1 id=&quot;how-we-construct-the-battery-database&quot;&gt;How We Construct the Battery Database&lt;/h1&gt;
 
 &lt;p&gt;The generation fo the batteries database takes the following steps:&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;First, the &lt;code class=&quot;highlighter-rouge&quot;&gt;tasks&lt;/code&gt; database is parsed by the &lt;code class=&quot;highlighter-rouge&quot;&gt;MaterialBuilder&lt;/code&gt; from &lt;code class=&quot;highlighter-rouge&quot;&gt;emmet&lt;/code&gt; to generate the &lt;code class=&quot;highlighter-rouge&quot;&gt;materials&lt;/code&gt; database.
-The the builder groups calculation of similar materials together and picks the most reliable results for each parameter from different calculations.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;create-the-materials-database&quot;&gt;Create the materials database&lt;/h2&gt;
+
+&lt;p&gt;First, the &lt;code class=&quot;highlighter-rouge&quot;&gt;tasks&lt;/code&gt; database is parsed by the &lt;code class=&quot;highlighter-rouge&quot;&gt;MaterialBuilder&lt;/code&gt; from &lt;code class=&quot;highlighter-rouge&quot;&gt;emmet&lt;/code&gt; to generate the &lt;code class=&quot;highlighter-rouge&quot;&gt;materials&lt;/code&gt; database.
+The the builder groups calculation of similar materials together and picks the most reliable results for each parameter from different calculations.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2018_task_mat_fc.gv.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;For insertion electrodes, The next step is to group the materials together by their structural similarity.
-The analysis of the battery materials is done by the modules found in &lt;code class=&quot;highlighter-rouge&quot;&gt;pymatgen.apps.battery.insertion_battery.py&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;parse-the-materials-database-for-insertion-electrodes&quot;&gt;Parse the &lt;code class=&quot;highlighter-rouge&quot;&gt;materials&lt;/code&gt; database for insertion electrodes&lt;/h2&gt;
+
+&lt;p&gt;For insertion electrodes, The next step is to group the materials together by their structural similarity.
+The analysis of the insertion battery materials is done by the module found in &lt;code class=&quot;highlighter-rouge&quot;&gt;pymatgen.apps.battery.insertion_battery.py&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2018_mat_batt_fc.gv.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>Jimmy-Xuan Shen</name></author><summary type="html">How We Construct the Battery Database</summary></entry><entry><title type="html">Useful Bash Commands</title><link href="http://localhost:4000/useful-bash-commands/" rel="alternate" type="text/html" title="Useful Bash Commands" /><published>2018-06-01T09:51:13-07:00</published><updated>2018-06-01T09:51:13-07:00</updated><id>http://localhost:4000/useful-bash-commands</id><content type="html" xml:base="http://localhost:4000/useful-bash-commands/">&lt;p&gt;Create links in bin of all the excutables in the currenct directory:&lt;/p&gt;
 

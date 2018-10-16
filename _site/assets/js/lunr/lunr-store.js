@@ -20,7 +20,7 @@ var store = [{
         "url": "http://localhost:4000/useful-bash-commands/",
         "teaser":null},{
         "title": "Battery Database (For Materials Project)",
-        "excerpt":"How We Construct the Battery Database The generation fo the batteries database takes the following steps: First, the tasks database is parsed by the MaterialBuilder from emmet to generate the materials database.The the builder groups calculation of similar materials together and picks the most reliable results for each parameter fro...","categories": [],
+        "excerpt":"How We Construct the Battery Database The generation fo the batteries database takes the following steps: First, the tasks database is parsed by the MaterialBuilder from emmet to generate the materials database.The the builder groups calculation of similar materials together and picks the most reliable results for each parameter from...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/battery-database/",
         "teaser":null}]

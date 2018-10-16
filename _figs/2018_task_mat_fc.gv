@@ -1,5 +1,5 @@
 digraph hierarchy {
-size="5,5"
+size="9,6"
 rankdir=LR
 node[shape=record,style="filled,rounded",fillcolor=gray95,rankdir=LR]
 #edge[dir=back, arrowtail=empty]

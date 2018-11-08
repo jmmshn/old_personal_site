@@ -1,0 +1,37 @@
+digraph hierarchy {
+size="30,7";
+rankdir=LR;
+splines="true";
+concentrate = true;
+graph [fontname = "helvetica"];
+node [fontname = "helvetica"];
+edge [fontname = "helvetica"];
+#Colors https://coolors.co/e79094-60966c-81f5f9-ecf99f-fffefc-d81159
+node[shape=box,style="filled,rounded",fillcolor="#60966c"]
+
+#edge[dir=back, arrowtail=empty]
+mpdb [label="DB\nICSD,MP",fillcolor="#ecf99f",style="filled",shape=cylinder,height=1.3,width=1.3]
+battdb [label="BAT DB",fillcolor="#ecf99f",style="filled",shape=cylinder,height=1.3,width=1.3]
+{ rank=same;
+checkAtoms [label="Has Li\nand TM?", fillcolor="#81f5f960",style="filled,rounded",shape=diamond,height=1.3,width=1.3];
+discard1 [label="Discard", fillcolor="#d81159"];
+
+}
+setRem [label="Stepwise\nLi Removal", fillcolor="#1186c5",style="filled,rounded",shape=record,height=1.3,width=1.3]
+vasp [label="DFT\nRelaxation", fillcolor="#1186c5",style="filled,rounded",shape=record,height=1.3,width=1.3]
+struct [label="Structure\nCheck", fillcolor="#81f5f960",style="filled,rounded",shape=diamond,height=1.3,width=1.3]
+
+{ rank=same;
+  struct [label="Has The\nStructure Changed\nToo Much", fillcolor="#81f5f960",style="filled,rounded",shape=diamond,height=1.3,width=1.3];
+  discard2 [label="Discard", fillcolor="#d81159"];
+}
+{
+  t3[label=<Li<SUB>2</SUB>CoO<SUB>2</SUB>>];
+  t2[label=<Li<SUB>1</SUB>CoO<SUB>2</SUB>>];
+  t1[label=<CoO<SUB>2</SUB>>];
+}
+checkAtoms -> discard1 [label="No"]
+struct -> discard2 [label="Yes"]
+mpdb -> checkAtoms -> setRem -> {t1, t2, t3} -> vasp -> struct
+struct -> battdb [label="No"]
+}
